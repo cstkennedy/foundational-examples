@@ -6,4 +6,4 @@ command-line arguments and arrays) for:
   1. review of previous coursework
   2. comparison between languages
 
-These examples are referenced from mutliple courses (including CS 330).
+These examples are referenced from multiple courses (including CS 330).
