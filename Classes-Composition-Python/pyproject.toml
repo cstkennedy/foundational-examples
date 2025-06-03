@@ -1,0 +1,15 @@
+[project]
+name = "classes-composition-python"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pyhamcrest>=2.1.0",
+    "pytest>=8.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+# Thank you... <https://github.com/astral-sh/uv/issues/7260#issuecomment-2341586054>
+pythonpath = ["."]
