@@ -10,7 +10,7 @@ def set_up_logging(global_level: str = "DEBUG") -> None:
 
 def main() -> None:
     set_up_logging("DEBUG")
-    logger = logger = logging.getLogger(__name__)
+    logger = logging.getLogger(__name__)
 
     logger.info("starting simulation!")
 
