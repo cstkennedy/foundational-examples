@@ -27,9 +27,15 @@ class LoggingDemo
 
         for (int i = 1; i <= 100; ++i) {
             switch (i) {
-                case 5 -> logger.debug("this is taking so long... boooring!");
-                case 10 ->logger.debug("still alive! yay!");
-                case 15 -> logger.info("halfway there!");
+                case 5 -> {
+                    logger.debug("this is taking so long... boooring!");
+                }
+                case 10 -> {
+                    logger.debug("still alive! yay!");
+                }
+                case 15 -> {
+                    logger.info("halfway there!");
+                }
                 case 20 -> {
                     logger.debug("*scratches nose*");
                     logger.warn("nose is itching, continuing anyways");
