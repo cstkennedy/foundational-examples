@@ -10,8 +10,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(11)
-    targetCompatibility = JavaVersion.toVersion(11)
+    sourceCompatibility = JavaVersion.toVersion(17)
+    targetCompatibility = JavaVersion.toVersion(17)
 }
 
 repositories {
@@ -29,7 +29,7 @@ jar {
 }
 
 run {
-    main = "Demo"
+    mainClass = "Demo"
 }
 
 application {

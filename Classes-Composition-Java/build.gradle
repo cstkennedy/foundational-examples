@@ -6,16 +6,19 @@ buildscript {
 
 plugins {
     id "java"
+    id "application"
+    id "jvm-test-suite"
+    id "eclipse"
 
-    id "com.github.spotbugs" version "5.0.9"
+    id "com.github.spotbugs" version "6.2.1"
     id "project-report"
     id "jacoco"
     id "pmd"
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(11)
-    targetCompatibility = JavaVersion.toVersion(11)
+    sourceCompatibility = JavaVersion.toVersion(17)
+    targetCompatibility = JavaVersion.toVersion(17)
 }
 
 repositories {
@@ -32,16 +35,23 @@ jar {
     archiveBaseName = 'EnrollStudents'
     manifest {
         attributes(
-          'Main-Class': 'edu.odu.cs.cs330.examples.EnrollStudents'
+          "Main-Class": "edu.odu.cs.cs330.examples.EnrollStudents"
         )
+    }
+}
+application {
+    mainClass = "edu.odu.cs.cs330.examples.EnrollStudents"
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+        }
     }
 }
 
 test {
-    useJUnitPlatform()
-    reports {
-        html.enabled = true
-    }
     ignoreFailures = true
 
     testLogging {
@@ -50,31 +60,54 @@ test {
 
 }
 
+javadoc {
+    failOnError = false
+}
+
+//------------------------------------------------------------------------------
+// Analysis Tools
+//------------------------------------------------------------------------------
 jacoco {
-    toolVersion = "0.8.4"
+    toolVersion = "0.8.13"
 }
 
 jacocoTestReport {
     reports {
-        html.enabled true
-        xml.enabled true
-        csv.enabled true
+        xml.required = true
+        csv.required = true
     }
 }
 
 // SpotBugs
+spotbugs {
+    toolVersion = "4.9.3"
+}
+
 spotbugsMain {
     ignoreFailures = true
-    effort = "max"
-    reportLevel = "medium"
+    effort = com.github.spotbugs.snom.Effort.MAX
+    reportLevel = com.github.spotbugs.snom.Confidence.values()[1] // Medium
     reports {
-       xml.enabled = false
-       html.enabled = true
+       xml.required = false
+       html.required = true
     }
 }
 
 spotbugsTest.enabled = false
 // End SpotBugs config
+
+pmd {
+    toolVersion = "7.0.0"
+
+    ignoreFailures = true
+    ruleSets = [
+        "category/java/bestpractices.xml",
+        "category/java/codestyle.xml",
+        "category/java/design.xml",
+        "category/java/errorprone.xml",
+        "category/java/performance.xml"
+    ]
+}
 
 pmd {
     ignoreFailures = true
